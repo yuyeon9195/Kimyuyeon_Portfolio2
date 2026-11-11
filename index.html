@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="브랜디드 콘텐츠·크리에이터 매니저 김유연 포트폴리오">
+<meta property="og:title" content="김유연 포트폴리오">
+<meta property="og:description" content="유튜브 콘텐츠 기획안 작성·피드백, 크리에이터·제작팀·브랜드 간 커뮤니케이션">
+<meta property="og:type" content="website">
+<title>김유연 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Inter:wght@500;700;800&display=swap">
+<style>
+/* Layout: 흰 바탕·검정 글씨의 포트폴리오 웹페이지. 상단 고정 메뉴 → 텍스트 중심 첫 화면(이름·한 줄 소개·[항목] 정보·목차) → works(분류 제목 테이프 + 프로젝트마다 [항목] 설명과 콜아웃 박스가 달린 이미지 줄) → strengths → profile → contact. 강조는 노란 형광펜 하나 */
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF; --ink:#111111; --ink-2:#555555; --ink-3:#8A8A8A; --line:#E3E3E3; --soft:#F6F6F4;
+  --hl:#FFE94A;
+  --f-sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-num:"Inter","Noto Sans KR",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+mark{background:linear-gradient(transparent 45%,var(--hl) 45%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 2px}
+.tape{display:inline-block;background:var(--hl);padding:6px 16px 7px;font-weight:900;letter-spacing:-.02em;line-height:1.25}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--ink)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
+.nav .name{font-weight:900;letter-spacing:-.02em}
+.nav nav{display:flex;gap:clamp(14px,3vw,30px);font-family:var(--f-num);font-size:14px;font-weight:700}
+.nav nav a{text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+.nav nav a:hover{border-color:var(--ink)}
+
+/* hero */
+.hero .wrap{padding-block:clamp(56px,9vw,110px) clamp(48px,7vw,80px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px 64px;align-items:end;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--f-num);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--ink-3)}
+h1{margin:14px 0 0;font-weight:900;font-size:clamp(56px,9vw,112px);line-height:.95;letter-spacing:-.05em}
+h1 small{display:block;margin-top:16px;font-family:var(--f-num);font-weight:800;font-size:.24em;letter-spacing:-.01em;color:var(--ink-2)}
+.thesis{margin:28px 0 0;font-size:clamp(19px,2.1vw,24px);font-weight:700;line-height:1.55;letter-spacing:-.02em;max-width:30ch}
+.facts{display:grid;gap:18px;font-size:15px}
+.facts dt{font-weight:900}
+.facts dd{margin:2px 0 0;color:var(--ink-2)}
+.toc{margin-top:8px;border-top:1px solid var(--ink)}
+.toc a{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:700;transition:padding .2s}
+.toc a:hover{padding-left:6px}
+.toc .n{font-family:var(--f-num);font-size:13px;color:var(--ink-3)}
+.toc .c{font-family:var(--f-num);font-size:13px;color:var(--ink-3)}
+
+/* section */
+section{scroll-margin-top:72px}
+.sec{padding-block:clamp(64px,9vw,104px) 0}
+.sec-title{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.sec-title h2{margin:0;font-family:var(--f-num);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-.04em;line-height:1}
+.sec-title span{font-weight:700;color:var(--ink-3)}
+
+/* works */
+.cat{margin-top:clamp(56px,7vw,88px)}
+.cat-h{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:8px}
+.cat-h .tape{font-size:clamp(20px,2.4vw,26px)}
+.cat-h p{margin:0;color:var(--ink-2);font-size:15.5px}
+.proj{padding-block:44px 8px;border-top:1px solid var(--line);margin-top:36px}
+.cat-h + .proj{margin-top:28px}
+.ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.ph .no{font-family:var(--f-num);font-weight:800;font-size:15px;color:var(--ink-3)}
+.ph h3{margin:0;font-size:clamp(22px,2.6vw,28px);font-weight:900;letter-spacing:-.03em;line-height:1.3}
+.ph .st{font-size:12.5px;font-weight:700;border:1px solid var(--ink);padding:1px 8px}
+.ph a{margin-left:auto;font-size:13.5px;font-weight:700;text-decoration:none;border-bottom:1px solid var(--ink)}
+.meta{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1.15fr);gap:24px 40px;font-size:15px;line-height:1.65}
+.meta h4{margin:0 0 4px;font-size:14.5px;font-weight:900}
+.meta p{margin:0;color:var(--ink-2)}
+.meta ul{margin:0;padding:0;list-style:none;color:var(--ink-2)}
+.meta li{position:relative;padding-left:12px}
+.meta li::before{content:"";position:absolute;left:0;top:.75em;width:4px;height:1px;background:var(--ink-2)}
+.meta .res li{color:var(--ink);font-weight:700}
+.meta .note{margin-top:6px;font-size:12.5px;color:var(--ink-3)}
+
+/* image strip with callouts */
+.shots{display:flex;gap:12px;overflow-x:auto;padding:70px 2px 70px;margin-top:6px;scrollbar-width:thin}
+.shots.no-top{padding-top:28px}
+.shots.no-bottom{padding-bottom:28px}
+.shot{position:relative;flex:none;border:0;padding:0;background:none;cursor:zoom-in}
+.shot img{height:var(--h,230px);width:auto;max-width:none;border:1px solid var(--line);background:var(--soft)}
+.co{position:absolute;left:var(--x,50%);transform:translateX(calc(var(--a,50%) * -1));z-index:2;background:#fff;border:1px solid var(--ink);padding:5px 12px;font-size:13.5px;font-weight:500;line-height:1.4;white-space:nowrap;pointer-events:none}
+.co b{font-weight:900}
+.co::after{content:"";position:absolute;left:var(--a,50%);width:1px;background:var(--ink)}
+.co.top{bottom:calc(100% + 30px)}
+.co.top::after{top:100%;height:31px}
+.co.bottom{top:calc(100% + 30px)}
+.co.bottom::after{bottom:100%;height:31px}
+
+/* format boxes (no-image projects) */
+.boxes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--ink);margin-top:28px}
+.boxes div{padding:18px;border-right:1px solid var(--line);min-width:0}
+.boxes div:last-child{border-right:0}
+.boxes .k{font-family:var(--f-num);font-size:12px;font-weight:700;color:var(--ink-3)}
+.boxes b{display:block;margin:6px 0 4px;font-size:17px;font-weight:900;letter-spacing:-.02em;line-height:1.35}
+.boxes p{margin:0;font-size:14px;color:var(--ink-2)}
+
+/* campaign subs */
+.subs{display:grid;gap:8px}
+.subp{padding-top:26px}
+.subp h4{margin:0 0 10px;font-size:19px;font-weight:900;letter-spacing:-.02em}
+.subp h4 span{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--ink-3);margin-right:8px}
+
+/* chart */
+.chart{margin-top:30px;border:1px solid var(--ink);padding:20px 20px 14px;display:grid;gap:10px}
+.chart-top{display:flex;justify-content:space-between;align-items:baseline;gap:6px 14px;flex-wrap:wrap}
+.chart-top b{font-weight:900}
+.chart-read{font-family:var(--f-num);font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.bars{position:relative;display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;height:190px;align-items:end;border-bottom:1px solid var(--ink);background:repeating-linear-gradient(to top,transparent 0 62px,var(--line) 62px 63px)}
+.barc{all:unset;position:relative;height:100%;display:flex;align-items:flex-end;justify-content:center}
+.barc i{display:block;width:56%;max-width:34px;background:var(--ink);border-radius:3px 3px 0 0;min-height:2px}
+.barc.pre i{background:#C9C9C9}
+.barc:hover i,.barc:focus-visible i{background:var(--ink);outline:3px solid var(--hl);outline-offset:0}
+.barc .v{position:absolute;bottom:calc(var(--h) + 5px);font-family:var(--f-num);font-size:11px;font-weight:700;white-space:nowrap}
+.adline{position:absolute;top:0;bottom:0;border-left:1.5px dashed var(--ink);pointer-events:none}
+.adline span{position:absolute;top:30%;right:8px;font-size:12px;font-weight:700;white-space:nowrap;background:#fff;padding:0 4px}
+.months{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px;font-family:var(--f-num);font-size:11.5px;color:var(--ink-3);text-align:center}
+.chart-note{font-size:12.5px;color:var(--ink-3);margin:0}
+
+/* strengths */
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink);margin-top:36px}
+.st{padding:28px 28px 30px 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.st + .st{padding-left:28px;border-left:1px solid var(--line)}
+.st .no{font-family:var(--f-num);font-weight:800;font-size:44px;line-height:1;letter-spacing:-.04em}
+.st h3{margin:0;font-size:21px;font-weight:900;letter-spacing:-.03em;line-height:1.35}
+.st .lead{margin:0;font-size:16px;line-height:1.65}
+.st ul{margin:6px 0 0;padding:14px 0 0;list-style:none;border-top:1px solid var(--line);display:grid;gap:8px;font-size:15px;color:var(--ink-2)}
+.st li{position:relative;padding-left:14px}
+.st li::before{content:"";position:absolute;left:0;top:.75em;width:5px;height:1px;background:var(--ink)}
+.st li b{color:var(--ink)}
+.go{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.go a{font-size:12.5px;font-weight:700;text-decoration:none;border:1px solid var(--ink);padding:2px 9px}
+.go a:hover{background:var(--hl)}
+
+/* profile */
+.prof{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 64px;margin-top:36px}
+.prof h3{margin:0 0 14px;font-size:15px;font-weight:900}
+.tl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.tl time{font-family:var(--f-num);font-size:13px;font-weight:700;color:var(--ink-3);padding-top:2px;font-variant-numeric:tabular-nums}
+.tl b{display:block;font-weight:700;letter-spacing:-.01em}
+.tl span{color:var(--ink-2);font-size:14.5px}
+.aw{font-weight:900}
+.skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.skills div{padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px;min-width:0}
+.skills b{display:block;font-family:var(--f-num);font-weight:800}
+.skills span{color:var(--ink-2)}
+
+/* contact */
+.contact{margin-top:clamp(72px,10vw,120px);border-top:1px solid var(--ink);padding-block:48px 28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px}
+.contact h2{margin:0;font-family:var(--f-num);font-weight:800;font-size:clamp(40px,6vw,72px);letter-spacing:-.04em;line-height:1}
+.crow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:6px 0;font-size:17px}
+.crow .k{font-family:var(--f-num);font-size:12px;font-weight:700;color:var(--ink-3);width:52px}
+.crow .v{font-weight:700;user-select:all;word-break:break-all}
+.copy{all:unset;cursor:pointer;font-size:12.5px;font-weight:700;border:1px solid var(--ink);padding:1px 9px}
+.copy:hover{background:var(--hl)}
+.copy:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-num);font-size:12px;color:var(--ink-3);padding-block:0 32px}
+
+/* lightbox */
+dialog{border:0;padding:0;background:transparent;max-width:min(1100px,calc(100vw - 32px));max-height:calc(100dvh - 32px)}
+dialog::backdrop{background:rgba(255,255,255,.94)}
+dialog figure{margin:0;display:grid;gap:10px;justify-items:center}
+dialog img{max-height:calc(100dvh - 120px);width:auto;border:1px solid var(--line)}
+dialog figcaption{font-size:14px;font-weight:700}
+.lx{all:unset;cursor:pointer;position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));font-weight:700;font-size:14px;border:1px solid var(--ink);background:#fff;padding:4px 12px}
+
+/* responsive */
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr);align-items:start}
+  .meta{grid-template-columns:minmax(0,1fr)}
+  .boxes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .boxes div:nth-child(2){border-right:0}
+  .boxes div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .sgrid{grid-template-columns:minmax(0,1fr)}
+  .st,.st + .st{padding:26px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .prof{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .nav nav a:nth-child(n+3){display:none}
+  .shot img{height:calc(var(--h,230px) * .72)}
+  .co{white-space:normal;width:max-content;max-width:180px;font-size:12.5px;padding:4px 8px}
+  .boxes{grid-template-columns:minmax(0,1fr)}
+  .boxes div{border-right:0;border-bottom:1px solid var(--line)}
+  .boxes div:last-child{border-bottom:0}
+  .tl li{grid-template-columns:minmax(0,1fr);gap:2px}
+  .skills{grid-template-columns:minmax(0,1fr)}
+  .barc .v{display:none}
+  .ph a{margin-left:0}
+}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <span class="name">김유연</span>
+    <nav aria-label="섹션 이동"><a href="#works">Works</a><a href="#strengths">Strengths</a><a href="#profile">Profile</a><a href="#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="kicker">PORTFOLIO 2026</div>
+      <h1>김유연<small>Brand × Creator Manager</small></h1>
+      <p class="thesis"><mark>유튜브 콘텐츠 기획안 작성·피드백</mark>, 크리에이터·제작팀·브랜드 간 <mark>소통과 일정</mark> 담당</p>
+    </div>
+    <div class="facts">
+      <dl style="margin:0;display:grid;gap:16px">
+        <div><dt>[소속]</dt><dd>스튜디오 에피소드 브랜디드 콘텐츠 사업부 매니저 · 2025.12 – 현재</dd></div>
+        <div><dt>[학력]</dt><dd>청주대학교 광고홍보학과 / 경영학과 복수전공</dd></div>
+      </dl>
+      <div class="toc" id="toc"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="works">
+  <div class="wrap">
+    <div class="sec-title"><h2>Works</h2><span>한 일</span></div>
+    <div id="cats"></div>
+  </div>
+</section>
+
+<section class="sec" id="strengths">
+  <div class="wrap">
+    <div class="sec-title"><h2>Strengths</h2><span>잘하는 일</span></div>
+    <div class="sgrid">
+      <div class="st">
+        <div class="no">01</div>
+        <h3>유튜브 콘텐츠 기획안 작성·피드백</h3>
+        <p class="lead">채널 진단에서 시작해 <mark>포맷·에피소드 기획</mark>, 업로드 전 <mark>크리에이터 가이드 피드백</mark>까지</p>
+        <ul>
+          <li>브랜디드 유튜브 채널 운영 제안서 <b>3건</b></li>
+          <li>크리에이터 콘텐츠 가이드 검수, 셀럽·인플루언서 촬영 가이드 제작</li>
+          <li>개인 숏폼 채널 직접 운영, 최고 조회수 <b>4.3만</b></li>
+        </ul>
+        <div class="go" data-go="kakao,nothing,koedu,yeop,oura"></div>
+      </div>
+      <div class="st">
+        <div class="no">02</div>
+        <h3>크리에이터·브랜드 사업 건 운영</h3>
+        <p class="lead">광고·공동구매·이벤트 건을 <mark>기획부터 결과 정리까지</mark> 직접 운영</p>
+        <ul>
+          <li>유튜브 공동구매 <b>314건 판매, 매출 1,351만 원</b></li>
+          <li>메타 광고 운영 브랜드 2026 매출 <b>1억 9,845만 원</b>, ROAS 289%</li>
+          <li>유튜브 댓글 이벤트 운영, 시딩 게시물 조회 33만 회 리포트</li>
+        </ul>
+        <div class="go" data-go="hwang,eod,kopher"></div>
+      </div>
+      <div class="st">
+        <div class="no">03</div>
+        <h3>커뮤니케이션·일정 조율</h3>
+        <p class="lead">브랜드·크리에이터·제작팀·파트너 사이에서 <mark>요청을 정리하고 일정을 맞추는 역할</mark></p>
+        <ul>
+          <li><b>클라이언트</b> · 마카오정부관광청 PM, 스케줄링 시트 구성, 성과 리포트 전달</li>
+          <li><b>크리에이터</b> · 가이드 전달, 업로드 일정·인터랙션 관리</li>
+          <li><b>제작·파트너</b> · 디자이너 피드백 정리, 물류·발송 일정 조율</li>
+        </ul>
+        <div class="go" data-go="oura,kopher,eod"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="profile">
+  <div class="wrap">
+    <div class="sec-title"><h2>Profile</h2><span>이력</span></div>
+    <div class="prof">
+      <div><h3>[경력]</h3><ul class="tl">
+        <li><time>2025.12 –</time><div><b>스튜디오 에피소드 · 브랜디드 콘텐츠 사업부 매니저</b><span>브랜드·크리에이터 사업 건, 유튜브 채널 제안, D2C 브랜드 운영</span></div></li>
+        <li><time>2026</time><div><b>기획서 워크샵</b><span>낫싱 유튜브 채널, 반스 60주년 팝업, 헬리녹스 어패럴 제안서</span></div></li>
+        <li><time>개인 채널</time><div><b>옆자리그녀 · <a href="https://www.instagram.com/yeopjarri/" target="_blank" rel="noopener">@yeopjarri ↗</a></b><span>직장인 공감형 숏폼 기획·촬영·편집, 최고 조회수 4.3만</span></div></li>
+        <li><time>2022 – 2026</time><div><b>청주대학교 광고홍보학과 / 경영학과</b><span>복수전공 · GPA 4.14 / 4.5</span></div></li>
+      </ul></div>
+      <div><h3>[대외활동]</h3><ul class="tl">
+        <li><time>2024.04 – 09</time><div><b>우체국 예금 서포터즈 14기 · 미디어 부장</b><span>예금상품 의인화 릴스 시리즈, 팔로워 1,624명, 우수 관리상</span></div></li>
+        <li><time>2024.04 – 07</time><div><b>상상마케팅스쿨 17기 · 충북 대표</b><span>정관장 MZ 전략 기획서 주도 작성, 장려상</span></div></li>
+        <li><time>2024.09 – 11</time><div><b>썸프렌즈 3기</b><span>소셜 데이터 분석 리포트, 블로그 일 평균 방문자 167명</span></div></li>
+      </ul></div>
+      <div><h3>[수상]</h3><ul class="tl">
+        <li><time>2024.11</time><div><b><span class="aw">최우수상</span> · MBC every1 ‘다컸는데 안나가요’ 홍보 전략</b><span>팀장, ‘MAY A.I. HELP YOU?’ 캠페인</span></div></li>
+        <li><time>2023.05</time><div><b><span class="aw">최우수상</span> · ‘re:born’ 패스트패션 캠페인</b><span>팀장, 콘셉트·제안서</span></div></li>
+        <li><time>2022.12</time><div><b><span class="aw">대상</span> · BBQ 브랜드 커뮤니케이션 전략</b><span>레트로 콘셉트 ‘삐삐 큐!’ 캠페인</span></div></li>
+        <li><time>2022.10</time><div><b><span class="aw">우수상</span> · 아이레시피 친환경 캠페인</b><span>‘라온하제’ 기획, 오프라인 참여형 캠페인</span></div></li>
+      </ul></div>
+      <div><h3>[스킬 · 자격증]</h3>
+        <div class="skills">
+          <div><b>PowerPoint</b><span>제안서·촬영 가이드</span></div>
+          <div><b>Notion · Google</b><span>일정·성과 데이터 관리</span></div>
+          <div><b>Figma</b><span>가이드·카드뉴스·상세페이지</span></div>
+          <div><b>CapCut</b><span>숏폼·소재 편집</span></div>
+          <div><b>Cafe24 · Meta Ads</b><span>커머스·광고 지표</span></div>
+          <div><b>자격증</b><span>검색광고마케터 1급 · GTQ 1급 · 컴활 2급 · 토스 IM3</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Contact</h2>
+      <div>
+        <div class="crow"><span class="k">EMAIL</span><span class="v" id="mail">yuyeon9195@naver.com</span><button class="copy" data-copy="mail">복사</button></div>
+        <div class="crow"><span class="k">PHONE</span><span class="v" id="tel">010-6770-1192</span><button class="copy" data-copy="tel">복사</button></div>
+      </div>
+    </div>
+    <div class="foot"><span>© 2026 김유연</span><span>Last updated 2026.11</span></div>
+  </div>
+</section>
+</main>
+
+<dialog id="lb" aria-label="이미지 크게 보기">
+  <button class="lx" data-close>닫기 ✕</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</dialog>
+
+<script>
+const CATS=[
+ ['yt','유튜브 콘텐츠 기획','브랜디드 채널 운영 제안서와 개인 숏폼 채널'],
+ ['creator','크리에이터·인플루언서 운영','시딩·공동구매·유튜브 이벤트 등 크리에이터와 함께한 사업 건'],
+ ['brand','브랜드 운영','D2C 브랜드 광고·CRM과 리테일 소재 기획'],
+ ['camp','캠페인 기획안 작성','브랜드 과제 정의부터 컨셉·크리에이티브까지']
+];
+/* shots: [이미지, 높이, 콜아웃(선택: [텍스트, 위치 top|bottom, x%])] */
+const P=[
+ {id:'kakao',cat:'yt',name:'카카오 언오피셜 채널 ‘ㅇㅋㅋ’ 운영 제안',st:'제안',
+  topic:'카카오 언오피셜 유튜브 채널의 운영 방향과 웹 예능형 콘텐츠 제안',
+  roles:['기존 브랜드 채널·관련 예능 콘텐츠 분석','웹 예능형 콘텐츠 아이디어 제시·정리','운영 제안서(PPT) 제작'],
+  res:['채널 진단 → 타깃 → 포맷 순의 <mark>운영 제안서</mark> 완성'],
+  shots:[['kakao_cover',220],['kakao_insight',220,['비슷비슷한 <b>연애 콘텐츠 시장</b> 진단','top']],['kakao_diag',220,['<b>세대 인식 변화</b>에서 채널 과제 도출','bottom']],['kakao_okiki',220,['기존 채널 <b>GOOD / NOT GOOD</b> 분석','top']]]},
+ {id:'nothing',cat:'yt',name:'낫싱 헤드폰 유튜브 채널 운영 제안',st:'제안 · 기획서 워크샵',
+  topic:'‘멋있지만 쓰기 부담스러운 헤드폰’을 ‘몰입할 때 쓰는 헤드폰’으로 바꾸는 유튜브 채널',
+  roles:['유튜브 속 낫싱 노출 분석: 제품 소개 위주, 사용 장면 부재','타깃을 ‘좋아하는 것에 몰입하는 덕후’로 정의','시리즈 포맷 기획, 제안서 작성'],
+  res:['<mark>시리즈 3종</mark> · with 낫싱 / 몰입 플레이리스트 / 덕력인증소'],
+  shots:[['nothing_otaku',220,['타깃: 좋아하는 것에 <b>몰입하는 덕후</b>','top']],['nothing_channel',220,['제품 소개 대신 <b>사용 장면</b>을 보여주는 채널','bottom']],['nothing_with',220,['시리즈 1 · <b>대화 없는 몰입 영상</b>','top']],['nothing_playlist',220]]},
+ {id:'koedu',cat:'yt',name:'코리아교육그룹 청년 공감형 유튜브 기획',st:'제안',
+  topic:'‘쉬었음 청년’의 현실에서 출발한 교육 브랜드 유튜브 포맷',
+  roles:['기존 채널 맥락·타깃 상황 진단','셀럽의 실제 서사와 타깃 공감대 매칭','출연자·포맷·에피소드 흐름 구체화'],
+  res:['유튜브 포맷 <mark>4종</mark> 제안'],
+  boxes:[['팬밋업','숨고모','숨 고르기 중인 청년과 셀럽의 소규모 모임'],['숏폼 시트콤','사각지대','공백기 주인공이 일상을 회복하는 이야기'],['릴레이 카메라','오늘도 무사히 쉬었습니다','취미와 배움으로 채우는 하루'],['토크쇼','인생 그래프 / 생기부 재발급','공백기를 커리어 로드맵으로 연결']]},
+ {id:'yeop',cat:'yt',name:'옆자리그녀 · 직장인 공감형 숏폼 채널',st:'개인 채널',link:['@yeopjarri ↗','https://www.instagram.com/yeopjarri/'],
+  topic:'동료의 말투와 취향을 캐릭터로 만든 직장인 코미디 숏폼',
+  roles:['채널 콘셉트·캐릭터 기획','촬영·CapCut 편집·업로드','협찬 콘텐츠 진행'],
+  res:['최고 조회수 <mark>4.3만 회</mark> · 평균 5천 회'],
+  shots:[['yeop',300,null,[['시리즈 ‘옆자리 그녀 염탐하기’ · <b>8,906회</b>','top',25],['‘연차별 사무실 책상’ · <b>4.3만 회</b>','bottom',75]]]]},
+
+ {id:'oura',cat:'creator',name:'오우라링 얼리버드 캠페인·시딩',st:'진행 중',
+  topic:'글로벌 웰니스 브랜드 신제품 얼리버드 캠페인의 콘텐츠 기획과 시딩 운영',
+  roles:['얼리버드 페이지·소셜 콘텐츠 기획안','유튜브 크리에이터 콘텐츠 가이드 피드백','셀럽·인플루언서 시딩 가이드, 발송·인터랙션 관리'],
+  res:['바이럴 게시물 <mark>228건+</mark> 현황 관리','총 팔로워 약 4,741만 명 규모 채널 관리'],note:'수치는 캠페인 전체 현황',
+  shots:[['oura_ring',240],['oura_vip',240,['<b>VIP 얼리버드 초대</b> 페이지 기획','top']],['oura_flow',240,['RSVP 신청 <b>플로우 설계</b>','bottom']],['oura_about',240]]},
+ {id:'kopher',cat:'creator',name:'코페르 시딩 · 야노시호 유튜브 이벤트',st:'완료',link:['이벤트 영상 ↗','https://www.youtube.com/watch?v=uziWlF1XS80'],
+  topic:'마이크로 인플루언서 시딩과 유튜브 채널 댓글 이벤트 운영',
+  roles:['이벤트 더보기 문구·구글폼 설계, 당첨자 선정, 브랜드 전달','크리에이터 바이럴 소재 카피 기획','인플루언서별 반응 데이터 관리, 성과 보고서'],
+  res:['시딩 14건 조회 <mark>330,826회</mark>','좋아요 4,515 · 댓글 176'],
+  shots:[['coper_yano',210,['야노시호 채널 <b>댓글 이벤트</b>','top']],['coper_event',210,['더보기 문구·<b>구글폼</b> 작성','bottom']],['coper_copy',210,['크리에이터 <b>소재 카피</b> 기획','top']],['coper_cover',210]]},
+ {id:'hwang',cat:'creator',name:'황형구 유튜브 공동구매',st:'완료',link:['공동구매 영상 ↗','https://www.youtube.com/watch?v=oKA3DaMX-m4'],
+  topic:'크리에이터 유튜브 콘텐츠와 연계한 공동구매',
+  roles:['콘텐츠 제작 가이드 작성','상세페이지·가격 구성안 기획','CS 운영, 판매 결과 정리'],
+  res:['<mark>314건 판매</mark> · 총매출 13,512,900원'],
+  shots:[['eod_hwang',240,['크리에이터 콘텐츠 연계 <b>공동구매</b>','top']]]},
+ {id:'aff',cat:'creator',name:'어필리에이터 시스템',st:'완료',
+  topic:'캠페인마다 꺼내 쓰는 마이크로 인플루언서 데이터베이스',
+  roles:['카테고리별 인플루언서 백과사전형 PPT 제작','데이터베이스 지속 축적'],
+  res:['사내 공용 <mark>인플루언서 DB</mark> 구축'],
+  shots:[['affiliator',200]]},
+
+ {id:'eod',cat:'brand',name:'잇올다이 (스테이크칩) 브랜드 운영',st:'진행 중',link:['공식몰 ↗','https://eatordie.kr/index.html'],
+  topic:'소고기 스낵 D2C 브랜드의 메타 광고·카카오톡 CRM·자사몰 운영',
+  roles:['메타 광고 소재 기획, 성과 기반 개선','카카오톡 채널 구축, 쿠폰·메시지·발송 타이밍 기획','상세페이지 리뉴얼, 가격 구성, CS·물류 소통'],
+  res:['2026 누적 매출 <mark>198,445,460원</mark>','광고 집행 후 자사채널 월평균 매출 <mark>약 25배</mark>','메타 광고비 5,221만 원 · ROAS 289%','카카오톡 CRM 2건 · 1,026명 발송'],
+  note:'ROAS는 광고비+판매수수료 기준 · 월평균은 광고 전 1–4월 vs 5·6·8·9·10월 자사채널',
+  chart:{title:'월별 총매출 (2026)',months:['1','2','3','4','5','6','7','8','9','10','11'],vals:[1402740,2482180,1178900,1401400,50269480,37689200,0,25918000,35977520,33248240,8877800],adStart:4},
+  shots:[['eod_ad1',260,['<b>메타 광고</b> 소재','top']],['eod_ad2',260],['eod_crm1',260,['<b>카카오톡 CRM</b> 메시지','bottom']],['eod_crm2',260],['eod_poster',260,['오프라인 <b>시딩</b> 포스터','top']]]},
+ {id:'gash',cat:'brand',name:'가쉬 리테일·광고 소재 기획',st:'완료',
+  topic:'뷰티 브랜드의 리테일 배너와 광고 소재 기획',
+  roles:['올리브영 띠배너 SB 기획','셀럽 메타 광고 소재 카피 베리에이션','공동구매 가격안 구상'],
+  res:['소재 기획안 · <mark>올리브영 배너 SB</mark> 전달'],
+  shots:[['gash_ad',180],['gash_banner',180]]},
+
+ {id:'campaign',cat:'camp',name:'캠페인 기획안 2건',st:'제안 · 기획서 워크샵',
+  subs:[
+   {t:'헬리녹스 어패럴 · 꽉 찬 경량',topic:'충전재를 덜어 가벼운 ‘속 빈 경량’ 시장에서, 구조로 가벼워진 헬리녹스의 차이를 컨셉으로 정의',
+    roles:['무신사 거래액·리뷰·SNS 반응으로 시장과 니즈 분석','상위 경량패딩 충전재 비교로 문제 발견','‘얼마나 가벼운가’ → ‘왜 가벼운가’로 기준 전환'],
+    res:['컨셉 <mark>‘꽉 찬 경량’</mark>','비교 광고 · 웹 게임 · 매장 게임 3단 크리에이티브'],
+    shots:[['hx_offline',220,['매장 게임 <b>‘320g을 맞춰라’</b>','top']],['hx_game1',220,['웹 게임 <b>‘꽉 채워봐 320g’</b>','bottom']],['hx_game2',220]]},
+   {t:'반스 60주년 · 추억 팝업',topic:'익숙해서 클래식으로 보이지 않는 반스를, 신어온 사람들의 추억으로 증명하는 팝업 스토어',
+    roles:['헤리티지와 현재 인식(‘편하게 신는 신발’)의 간극 분석','‘세대가 바뀌어도 계속 선택된 신발 = 클래식’ 메시지 정리','추억 전달 → 공유 → 기록 팝업 동선 설계'],
+    res:['<mark>추억 수집 · 전시 · 기록</mark> 3단 팝업 구성'],
+    shots:[['vans_history',220,['1966년부터 이어진 <b>헤리티지</b>','top']],['vans_flow',220,['추억 <b>전달 → 공유 → 기록</b> 동선','bottom']],['vans_space',220,['60주년 <b>팝업 공간</b>','top']]]}
+  ]}
+];
+P.forEach((p,i)=>p.no=String(i+1).padStart(2,'0'));
+const byId=Object.fromEntries(P.map(p=>[p.id,p]));
+
+function shotsHTML(shots,title){
+  const all=shots.flatMap(s=>[...(s[2]?[s[2]]:[]),...(s[3]||[])]);
+  const hasTop=all.some(c=>c[1]==='top'), hasBot=all.some(c=>c[1]==='bottom');
+  return `<div class="shots${hasTop?'':' no-top'}${hasBot?'':' no-bottom'}">${shots.map(s=>{
+    const cos=[...(s[2]?[s[2]]:[]),...(s[3]||[])];
+    const cap=cos.map(c=>c[0].replace(/<[^>]+>/g,'')).join(' / ')||title;
+    return `<button class="shot" style="--h:${s[1]}px" data-img="${s[0]}" data-cap="${cap}" aria-label="${cap} 크게 보기"><img src="img/${s[0]}.jpg" alt="${cap}" loading="lazy">${cos.map(c=>{const x=c[2]??50,a=x<40?12:x>60?88:50;return `<span class="co ${c[1]}" style="--x:${x}%;--a:${a}%">${c[0]}</span>`}).join('')}</button>`;
+  }).join('')}</div>`;
+}
+function metaHTML(o){
+  return `<div class="meta">
+    <div><h4>[주제]</h4><p>${o.topic}</p></div>
+    <div><h4>[담당 업무]</h4><ul>${o.roles.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    <div><h4>[성과]</h4><ul class="res">${o.res.map(r=>`<li>${r}</li>`).join('')}</ul>${o.note?`<p class="note">* ${o.note}</p>`:''}</div>
+  </div>`;
+}
+function chartHTML(c){
+  const max=Math.max(...c.vals),won=v=>v.toLocaleString('ko-KR')+'원',man=v=>Math.round(v/10000).toLocaleString('ko-KR');
+  const x=(c.adStart/c.vals.length*100).toFixed(2);
+  return `<div class="chart"><div class="chart-top"><b>${c.title}</b><span class="chart-read" data-read aria-live="polite">막대에 마우스를 올리면 월 매출 표시</span></div>
+  <div class="bars">${c.vals.map((v,i)=>{const h=(v/max*100).toFixed(1)+'%';return `<button class="barc${i<c.adStart?' pre':''}" style="--h:${h}" data-val="2026년 ${c.months[i]}월 · ${v?won(v):'집행 중단'}" aria-label="2026년 ${c.months[i]}월 ${v?won(v):'매출 없음'}"><i style="height:${h}"></i>${i>=c.adStart&&v?`<span class="v">${man(v)}</span>`:''}</button>`}).join('')}
+  <div class="adline" style="left:${x}%"><span>메타 광고 시작</span></div></div>
+  <div class="months">${c.months.map(m=>`<span>${m}월</span>`).join('')}</div>
+  <p class="chart-note">단위: 만 원 · 회색은 광고 집행 전 · 5월에 유튜브 공동구매 1,351만 원 포함 · 7월 집행 중단 · 11월 집계 중</p></div>`;
+}
+function projHTML(p){
+  const head=`<div class="ph"><span class="no">${p.no}</span><h3>${p.name}</h3><span class="st">${p.st}</span>${p.link?`<a href="${p.link[1]}" target="_blank" rel="noopener">${p.link[0]}</a>`:''}</div>`;
+  if(p.subs) return `<article class="proj" id="p-${p.id}">${head}<div class="subs">${p.subs.map((s,i)=>`<div class="subp"><h4><span>${p.no}-${i+1}</span>${s.t}</h4>${metaHTML(s)}${shotsHTML(s.shots,s.t)}</div>`).join('')}</div></article>`;
+  const boxes=p.boxes?`<div class="boxes">${p.boxes.map(b=>`<div><span class="k">${b[0]}</span><b>${b[1]}</b><p>${b[2]}</p></div>`).join('')}</div>`:'';
+  return `<article class="proj" id="p-${p.id}">${head}${metaHTML(p)}${p.chart?chartHTML(p.chart):''}${boxes}${p.shots?shotsHTML(p.shots,p.name):''}</article>`;
+}
+document.getElementById('cats').innerHTML=CATS.map(([k,label,desc])=>{
+  const items=P.filter(p=>p.cat===k);
+  return `<div class="cat" id="cat-${k}"><div class="cat-h"><span class="tape">${label}</span><p>${desc}</p></div>${items.map(projHTML).join('')}</div>`;
+}).join('');
+document.getElementById('toc').innerHTML=CATS.map(([k,label])=>{
+  const items=P.filter(p=>p.cat===k);
+  return `<a href="#cat-${k}"><span class="n">${items[0].no}${items.length>1?'–'+items[items.length-1].no:''}</span><span>${label}</span><span class="c">${items.length}</span></a>`;
+}).join('');
+const SHORT={kakao:'카카오',nothing:'낫싱',koedu:'코리아교육그룹',yeop:'옆자리그녀',oura:'오우라링',kopher:'코페르',hwang:'공동구매',eod:'잇올다이'};
+document.querySelectorAll('[data-go]').forEach(el=>{
+  el.innerHTML=el.dataset.go.split(',').map(id=>`<a href="#p-${id}">${byId[id].no} ${SHORT[id]}</a>`).join('');
+});
+
+const lb=document.getElementById('lb');
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-img]');
+  if(s){document.getElementById('lb-img').src=`img/${s.dataset.img}.jpg`;document.getElementById('lb-img').alt=s.dataset.cap;document.getElementById('lb-cap').textContent=s.dataset.cap;lb.showModal();return}
+  if(e.target.closest('[data-close]')||e.target===lb){lb.close();return}
+  const c=e.target.closest('[data-copy]');
+  if(c){const el=document.getElementById(c.dataset.copy);const done=()=>{c.textContent='복사됨';setTimeout(()=>c.textContent='복사',1500)};
+    try{navigator.clipboard.writeText(el.textContent).then(done,()=>sel(el))}catch(_){sel(el)}}
+});
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.tagName==='FIGURE')lb.close()});
+function sel(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+const readBar=e=>{const b=e.target.closest('.barc');if(b)b.closest('.chart').querySelector('[data-read]').textContent=b.dataset.val};
+document.addEventListener('pointerover',readBar);document.addEventListener('focusin',readBar);
+</script>
+
+</body>
+</html>
